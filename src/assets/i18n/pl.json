@@ -1,5 +1,7 @@
 {
     "SEARCH_FIELD": {
         "LABEL": "Szukaj"
-    }
+    },
+    "NO_DATA": "No Results Found",
+    "ACTIONS": "Akcje"
 }
