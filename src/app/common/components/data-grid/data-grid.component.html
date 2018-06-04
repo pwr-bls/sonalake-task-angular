@@ -1,0 +1,31 @@
+<div class="data-grid">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" *ngFor="let column of columns">{{column?.header | translate}}</th>
+                <th scope="col" *ngIf="actions">{{'ACTIONS' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of value; let i = index">
+                <td [class]="column?.styleClass" *ngFor="let column of columns" scope="column?.scope">{{row[column.field]}}</td>
+                <td scope="col" *ngIf="actions">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                        <button type="button" class="btn btn-secondary" (click)="handleEdit(row)">
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="handleRemove(row)">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i> Remove
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="value.length === 0">
+                <td colspan="6" class="text-center">
+                    <span class="align-middle">{{'NO_DATA' | translate}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <sl-pagination [setPagination]="pagination" (onChangePage)="handlePageChange($event)"></sl-pagination>
+</div>

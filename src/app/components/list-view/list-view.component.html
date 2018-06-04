@@ -1,0 +1,17 @@
+<h1>List View</h1>
+
+<div class="row">
+  <sl-search-field class="col-sm-6" [labelText]="'SEARCH_FIELD.LABEL'" (onChange)="handleSearchChange($event)"></sl-search-field>
+  <div class="col-sm-6 text-sm-right">
+    <a href="list-view/create" class="btn btn-primary mb-3">Add New</a>
+  </div>
+</div>
+<sl-data-grid
+  [columns]="columns"
+  [actions]="true"
+  [value]="characters$ | async"
+  [pagination]="pagination$ | async"
+  (onEdit)="handleEdit($event)"
+  (onRemove)="handleRemove($event)"  
+  (onChangePage)="handlePageChange($event)"
+></sl-data-grid>

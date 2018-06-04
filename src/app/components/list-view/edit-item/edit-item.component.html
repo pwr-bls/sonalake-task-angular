@@ -1,0 +1,32 @@
+<form novalidate [formGroup]="formField" [ngClass]="{'is-invalid': showErrors}">
+  <ng-container *ngFor="let field of fields">
+    <div class="row form-group">
+      <div class="col-sm-12">
+        <label [attr.for]="field.key">{{field.label}}
+          <span *ngIf="field.required">*</span>:
+        </label>
+        <ng-container [ngSwitch]="field.controlType">
+          <input *ngSwitchCase="'textfield'" (blur)="checkField(field.key)" type="text" formControlName="{{field.key}}" class="form-control"
+            id="{{field.key}}" />
+          <select *ngSwitchCase="'dropdown'" (blur)="checkField(field.key)" formControlName="{{field.key}}" class="form-control" id="{{field.key}}">
+            <option *ngFor="let species of field.options" [value]="species">
+              {{species}}
+            </option>
+          </select>
+          <ng-container *ngSwitchCase="'radiobutton'">
+            <div class="form-check offset-sm-1 col-sm-11" *ngFor="let option of field.options; let i = $index">
+              <input class="form-check-input" type="radio" value={{option.value}} formControlName="{{field.key}}" name="{{field.key}}" id="{{key}}{{i}}">
+              <label class="form-check-label" for="{{key}}{{i}}">
+                {{option.label}}
+              </label>
+            </div>
+          </ng-container>
+        </ng-container>
+        <div class="alert alert-danger" role="alert" *ngIf="!validation[field.key]">
+          This field is required
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <button (click)="handleSubmitForm(formField)">{{'SAVE' | translate}}</button>
+</form>

@@ -1,0 +1,15 @@
+<nav aria-label="pagination navigation">
+    <ul class="pagination justify-content-end">
+        <li class="page-item" [ngClass]="{'disabled': disablePrevious()}">
+            <button class="page-link" tabindex="-1" (click)="handlePageChange(pagination?.current - 1)">{{'Previous' | translate }}</button>
+        </li>
+        <li class="page-item" *ngFor="let page of pages" [ngClass]="{'active': page === pagination?.current}">
+            <button class="page-link" (click)="handlePageChange(page)">{{page}}
+                <span class="sr-only" *ngIf="page === pagination?.current">(current)</span>
+            </button>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': disableNext()}">
+            <button class="page-link" (click)="handlePageChange(pagination?.current + 1)">Next</button>
+        </li>
+    </ul>
+</nav>
