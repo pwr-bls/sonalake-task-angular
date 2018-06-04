@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ListViewComponent } from './components/list-view/list-view.component';
-import { ListViewItemComponent } from './components/list-view/list-view-item/list-view-item.component';
 import { CharacterServices } from './store/services/character.services';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
 import { CharactersEffects } from './store/effects/characters.effects';
